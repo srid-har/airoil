@@ -1,0 +1,39 @@
+
+/******************** Visiting site page open ********************/
+body {
+    margin: 0 auto;
+    padding: 0;
+    background: #4b4b4b url('../images/2008/bg.jpg') repeat-x 0 0;
+        background-color: rgb(75, 75, 75);
+}
+hr
+{
+    height: 10px;
+    background-color: #000;
+    float: left;
+    width: 100%;
+    margin-bottom: 7px;
+}
+.frameheader{
+    background: url(images/head_bg.gif) repeat-x #f9f9ee;
+}
+.leftsidecenter{
+    vertical-align: middle;
+    line-height: 50px;
+}
+#frameHeader {
+    background: url(images/head_bg.gif) repeat-x #f9f9ee;
+    padding: 5px;
+        padding-top: 5px;
+    padding-top: 15px;
+    border-bottom: solid 1px #f9f9f9;
+    height: 130px;
+}
+#frameLeft {
+    float: left;
+}
+#frameRight {
+    float: right;
+    padding-top: 60px;
+}
+/******************** Visiting site page close ********************/
