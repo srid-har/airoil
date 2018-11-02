@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %} 
+        <div class="center_content">
+             <!----> <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+            
+            <script>jQuery.noConflict();</script>
+            <script src="{{ asset('js/jquery.cycle2.js') }}"></script>
+                <div class="slide">
+                    <div class="cycle-slideshow" data-cycle-slides="> div" data-cycle-fx=carousel>
+                        {% for key in Banner %}
+                        <div>
+                            <img src="{{ asset('images/banners/'~key.imgUrl) }}" />
+                            <div class="cycle-overlay">{{ key.text }}</div>
+                        </div>
+                        {% endfor %}
+                        
+                    </div>
+                </div>
+            
+            
+            
+                <p style="text-align: left;color:#000">
+                Air-Oil Systems provides innovative automation solutions&nbsp;with&nbsp;quality products and services.&nbsp;&nbsp;Our pneumatic, hydraulic, motion control, robotic, process and instrumentation products will&nbsp;enable your company to&nbsp;become&nbsp;more productive and profitable. Our&nbsp;experienced team&nbsp;will assist&nbsp;you&nbsp;to select&nbsp;the&nbsp;proper&nbsp;components for your project,&nbsp;and help to provide an efficient and affordable solution&nbsp;for your application!&nbsp;&nbsp;Put our years of experience and in-depth product knowledge&nbsp;to work for&nbsp;YOU. &nbsp; &nbsp; &nbsp;
+                </p>
+                
+            <div class="row col_p_line">
+                <div class="col-md-6">
+                    <p>Download our <a href="/aoslc.pdf">Linecard</a></p>
+                    <p>Newsletter <a title="Newsletter" href="/newsletter.html">Archive</a></p>
+                    <p>Shop online at our: <a title="Shop Online" href="/v6/enter.html">On-Line Warehouse</a></p>
+                    <p>Directions:<a href="https://www.google.com/maps/place/753+Wambold+Rd,+Souderton,+PA+18964/@40.264686,-75.3453298,271m/data=!3m1!1e3!4m2!3m1!1s0x89c698ab4c192ad3:0xc82cf6f3cd37a46d">To Air-Oil Systems</a></p>
+                </div>
+                <div class="clear"></div>
+                <div class="col-md-6">
+                <p><a href="mailto:sales@airoil.com">sales@airoil.com</a>&nbsp;&nbsp;&nbsp; RFQ's Technical Support</p>
+                <p><a href="mailto:orders@airoil.com">orders@airoil.com</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Priority order desk, Purchase orders</p>
+                <p><a href="mailto:accounting@airoil.com">accounting@airoil.com</a>&nbsp; Billing Questions, A/R, A/P</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="down_image"><img src="{{ asset('images/ahtdlogo.png') }}"  /></p>
+                </div>
+            </div>
+        </div>
+
+        
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %} 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<div class="center_content">
+    <h2>Browse our Product Categories</h2>
+    <p><hr></p> 
+    <p>Browse our wide product selection by category below. <br>
+    Many of these products are available for purchase online. <a href="v6/enter.html" target="_black">Click here to order.</a></p>
+    <h6>Click on a category name to view our manufacturers in that category.</h6>
+    <div class="panel-group" id="accordion">
+    {% set catemanu= [] %} 
+    
+      {% for key in category %}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#{{ key.id}}">
+            {{ key.categorylist }}</a>
+          </h4>
+        </div>
+        <div id="{{ key.id }}" class="panel-collapse collapse">
+          <div class="panel-body">
+            {% for key1 in manufacturer %}
+              {% if key1.categorylist == key.categorylist %}
+              <div class="col-md-4 ">
+                <div class=" well "> <!-- boxsizediv -->
+                  <a href="Manufacturer/{{ key1.id }}">
+                    <img src="{{ asset('images/manufacturers/small/'~key1.SmallLogoUrl) }}"  class="imgresp" />
+                  </a>
+              <p class="text-center"> {{ key1.manufacturerName }}</p>
+                </div> 
+              </div>           
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div> 
+  </div>
+
+        
+{% endblock %}
+
+

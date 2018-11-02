@@ -1,0 +1,17 @@
+{% extends 'base1.html.twig' %}
+{% block body %}
+<div class="row frameheader" style="position: relative;">
+  <div class="col-sm-6 text-left">
+   <a target="_top" href="/">
+      <img alt="Air-Oil Systems, Inc." src="{{ asset('images/logo.png') }}">
+    </a> 
+  </div>
+  <div class="col-sm-6 text-center leftsidecenter">
+          Return to listing: <a target="_top" href="../Manufacturer/{{ manufacturer.id }}">{{ manufacturer.manufacturerName }}</a><br>
+      Return to <a target="_top" href="../home">AirOil.com</a>
+  </div>
+<hr>
+</div>
+<iframe id="frame" src="{{ manufacturer.LinkUrl }}" width="100%" height="500">
+     </iframe>
+{% endblock %}

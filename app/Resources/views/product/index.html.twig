@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<div class="center_content">
+  <h2>Manufacturers List</h2>
+  <p><hr></p> 
+  <div class="row">
+    {% for key1 in manufacturer %}
+      <div class="col-md-4 ">
+        <div class=" well heightcol">
+          <a href="Manufacturer/{{ key1.id }}">
+            <img src="{{ asset('images/manufacturers/small/'~key1.SmallLogoUrl) }}" alt="{{ key1.manufacturerName }}" width="200" height="76" class="imgresp" />
+          </a>
+          <p class="text-center"> <a href="Manufacturer/{{ key1.id }}">{{ key1.manufacturerName }}</a></p>
+          <p class="text-center"> {{ key1.short }}</p>
+          <p class="text-center"> {% if key1.StoreUrl == "" %}
+         <a href="v6/enter.html"> Order Online</a>
+        {% else %}
+         <a href="v6/{{ key1.StoreUrl }}"> Order Online</a>
+        {% endif %}</p>
+        </div>
+      </div>           
+    {% endfor %} 
+  </div>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Air-Oil Systems</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <!--  -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" >
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" >
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}" >
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="homepage">
+                <div class="row">
+                    <div class="col-md-2 div_center">
+                        <p><img src="{{ asset('images/logo.png') }}"></p>
+                    </div>
+                    <div class="col-md-7 div_center">
+                        <p><img src="{{ asset('images/splash.png') }}"></p>
+                    </div>
+                    <div class="col-md-3 div_center">
+                        <p><a href="v6/enter.html"><img class="img-responsive" src="{{ asset('images/buy_now.png') }}"></a></p>
+                        <p>Souderton, PA 18964<br>
+                           800-333-5520<br>
+                           <a href="mailto:&#115;a&#108;es&#64;&#97;&#105;r&#111;&#105;&#108;.c&#111;&#109;">&#115;&#97;&#108;e&#115;&#64;&#97;&#105;&#114;o&#105;&#108;&#46;&#99;o&#109;</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar navbar-default menu_type">
+              <div class="container">
+                <ul class="nav navbar-nav">
+                <li class="dropdown ">  
+                    <a href="home" class="">home<span class="caret"></span></a>
+                    <ul>
+                      <li><a href="home/val-u-added-services">val-u-added services</a></li>
+                      <li><a href="home/about">About Air-Oil Systems, Inc.</a></li>
+                      <li><a href="home/employment">Employment</a></li>
+                      <li><a href="home/new">What's New at Air-Oil Systems? </a></li>
+                      <li><a href="home/newsletter">AOS Newsletter Archive </a></li>
+                      <li><a href="home/credit">Credit Application</a></li>
+                      <li><a href="home/cv">The Truth about Valve Cv 's</a></li>
+                      <li><a href="home/links">Links</a></li>
+                      <li><a href="home/contact">contact</a></li> 
+                    </ul>
+                  </li>
+                  <li><a href={{ path('Category') }}>Categories</a></li>
+                  <li><a href={{ path('Product') }}>Products</a></li>
+                  <li><a href={{ path('ProductSearch') }} >Product Search</a></li>
+                  <li><a href={{ path('Literature') }}>Literature</a></li>
+                  <li class="last"><a href={{ path('Download') }}>Software Downloads</a></li>
+                </ul>
+                
+              </div>
+            </nav>
+            {% block body %} {% endblock %}
+            <div class="footer_col">
+                <div class="row ">
+                    <div class="col-md-3">
+                   <p style="text-align: center;">&copy; 2018 Air-Oil Systems, Inc.<br /> All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-9" >
+                        <ul>
+                            <li><a href="home">Home </a>                      
+                            <li><a href={{ path('Category') }}Categories</a></li>
+                            <li><a href={{ path('Product') }}>Products</a></li>
+                            <li><a href={{ path('ProductSearch') }}>Product Search</a></li>
+                            <li><a href={{ path('Literature') }}>Literature</a></li>
+                            <li><a href={{ path('Download') }}>Software Downloads</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="row footer_bottom">
+                    <p style="width: 100%;">   Air-Oil Systems, Inc.<br />
+                    753 Wambold Road, Souderton, PA 18964 &bull; Phone: 800-333-5520 &bull; Fax: 215-721-7666<br />
+                    For more information: <a href="mailto:&#115;&#97;&#108;e&#115;&#64;&#97;i&#114;o&#105;&#108;&#46;&#99;&#111;&#109;">s&#97;&#108;&#101;&#115;&#64;&#97;&#105;r&#111;&#105;&#108;&#46;&#99;&#111;&#109;</a>
+                    <br /><br />
+                    Website Produced by <a href="http://reenhanced.com/">Reenhanced LLC</a>
+                    </p>
+                </div>
+            </div>            
+        </div>
+    <script src="{{ asset('js/jquery.snippet.min.js') }}"></script>
+    <script async src="{{ asset('lib/jquery.easyPaginate.js') }}"></script>
+    <script src="{{ asset('js/scripts.js') }}"></script>
+    <script src="{{ asset('bootstrap/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+    </body>
+</html>

@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  {% set manu_name = "1" %}
+  {% set manu_id = "" %}
+{% for key1 in manufacturer %}
+  {% if key1.ManufacturerName == product.manufacturer %}
+    {% set manu_id = key1.id %} 
+  {% endif %}
+{% endfor %}
+<div class="center_content">
+  <h2>{{ product.name }} by {{ product.Manufacturer }} </h2>
+  <p><hr></p>
+  
+  <div class="row">
+        <div class="col-sm-12">
+          <a href="">
+            <img class="text-left" src="{{ asset('images/product/'~product.ImgUrl) }}" style="float:left;width:50%;padding-right: 10px;" />
+          </a>
+            Manufacturer: <a href="../Manufacturer/{{ manu_id }}">{{ product.Manufacturer }}</a>  
+          {{ product.description | raw }}
+        </div>    
+  </div>
+
+  {% if file|length != 0 %}
+    <br>
+    <h3 style="color: #039;border-bottom: 1px solid #EEE;">File</h3>
+    <div class="row">
+      {% for key1 in file %}
+        <div class="col-sm-12 ">
+          <div >
+            <a href="Product/product/{{ key1.id }}">
+              <img src="{{ asset('images/literature/image/'~key1.ImgUrl) }}"  class="imgresp" />
+            </a>
+          </div> 
+        <div class="" style=""> {{ key1.name }}</div>
+        <div class="belongs_to">Manufacturer:
+        <a href="../Manufacturer/{{ manu_id }}">{{ key1.manufacturer }}</a></div>
+        <div class="belongs_to">Product:
+        <a href="{{ product.id }}">{{ key1.name }}</a></div>
+        <div class="belongs_to">Software File:</div>
+        <div >{{ key1.description | raw }}</div>
+        <p><a href="../Productvisit/{{ key1.id }}" target="_blank">[ Link ]</a></p>
+        </div>           
+      {% endfor %} 
+    </div>
+  {% endif %}
+  {% if literature|length != 0 %}
+    <br>
+    <h3 style="color: #039;border-bottom: 1px solid #EEE;">Literature</h3>
+    <div class="row">
+      {% for key1 in literature %}
+        <div class="col-sm-12 ">
+          <div >
+            <a href="Product/product/{{ key1.id }}">
+              <img src="{{ asset('images/literature/image/'~key1.ImgUrl) }}"  class="imgresp" />
+            </a>
+          </div> 
+        <div class="" style=""> {{ key1.name }}</div>
+        <div class="belongs_to">Manufacturer:
+        <a href="../Manufacturer/{{ manu_id }}">{{ key1.manufacturer }}</a></div>
+        <div class="belongs_to">Product:
+        <a href="{{ product.id }}">{{ key1.name }}</a></div>
+        <div class="belongs_to">Literature:</div>
+        <div >{{ key1.description | raw }}</div>
+        <p><a href="{{ asset('images/literature/file/'~key1.Filename) }}" target="_blank">[ Download ]</a></p>
+        </div>           
+      {% endfor %} 
+    </div>
+  {% endif %}
+
+</div>
+{% endblock %}

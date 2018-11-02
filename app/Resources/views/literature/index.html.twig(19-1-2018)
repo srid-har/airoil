@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<div class="center_content">
+  <h2>Searchable Product List</h2>
+  <p><hr></p>
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="container">
+        <h2>Search </h2> 
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-10">
+      {% set inum = 0 %}
+      {% for key1 in literature %}
+        {% set inum = inum + 1 %}
+        <div class="row" style="padding-left: 5%;">
+          <div class="col-sm-12 border-bottom-0" style="border:1px solid #b8b8c3">
+            <div class="col-sm-3" style="text-align:center">
+              <a href="">
+                <img src="{{ asset('images/literature/image/'~key1.ImgUrl) }}" width="200" height="76" class="imgresp" style="margin-top: 10%;" />
+              </a>
+            </div> 
+            <div class="col-sm-9" style="border-left: 1px solid #b8b8c3;">
+              <p> 
+                <b>{{ key1.name }}</b>
+              </p>
+              <p > 
+                <b>Manufacturer</b> :{{ key1.name }}
+              </p>
+              <p > 
+                <b>Product</b> :{{ key1.name }}
+              </p>
+              <p > 
+                <b>Literature</b> <br>
+              {{ key1.description | raw }}
+              </p>
+              <p>
+                <a href="{{ asset('images/literature/file/'~key1.Filename) }}" target="_blank">[ Download ]</a>
+              </p>
+            </div>
+          </div>    
+        </div>       
+      {% endfor %} 
+      {% if inum == 0 %}
+        <div class="row">
+          <div class="col-sm-3 well boxsizediv">
+              <div style="text-align:center">
+                No Records 
+              </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<script>
+$('#easyPaginate').easyPaginate({
+    paginateElement: 'div',
+    elementsPerPage: 3,
+    effect: 'climb'
+});
+</script>
+{% endblock %}

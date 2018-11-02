@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="center_content">
+  <h2>Searchable Product List</h2>
+  <p><hr></p>
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="container" style="border: 1px solid #ccc;padding: 10px;">
+        <h2>Search </h2> 
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+      </div>
+    </div>
+  </div>
+  <div class="row"><div class="col-sm-12" style="font-style: italic;color: #666;" >{{ product|length }} results</div></div>
+  <div class="row" id="easyPaginate">
+    <div class="col-sm-10">
+      {% set inum = 0 %}
+      {% for key1 in product %}
+      {% set inum = inum + 1 %}
+        <div class="col-sm-3 well boxsizediv divpagination">
+          <div style="text-align:center">
+            <a href="Product/{{ key1.id }}">
+              <img src="{{ asset('images/product/'~key1.ImgUrl) }}" width="200" height="76" class="imgresp" />
+            </a>
+          </div> 
+        <p class="text-center"> 
+          <a href="Product/{{ key1.id }}">{{ key1.name }}</a>
+        </p>
+        </div>           
+      {% endfor %} 
+      {% if inum == 0 %}
+      <div class="col-sm-3 well boxsizediv">
+          <div style="text-align:center">
+            No Records 
+          </div>
+      </div>
+      {% endif %}
+      <br>
+      <br>
+    </div>
+  </div>
+</div>
+{% endblock %}

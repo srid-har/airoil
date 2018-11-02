@@ -1,0 +1,809 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pro",
+				"productid"
+			],
+			[
+				"pr",
+				"product"
+			],
+			[
+				"ma",
+				"margin"
+			],
+			[
+				"h",
+				"height"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"pv",
+				"pval2"
+			],
+			[
+				"wh",
+				"where"
+			],
+			[
+				"da",
+				"date1"
+			],
+			[
+				"c",
+				"change"
+			],
+			[
+				"ag",
+				"agencies"
+			],
+			[
+				"age",
+				"agencyid"
+			],
+			[
+				"agency",
+				"agency_name"
+			],
+			[
+				"a",
+				"array\t$… = array (…)"
+			],
+			[
+				"br",
+				"brand"
+			],
+			[
+				"Ca",
+				"Categorylist"
+			],
+			[
+				"cus",
+				"customer_lists"
+			],
+			[
+				"g",
+				"godown"
+			],
+			[
+				"col",
+				"col-xs-6"
+			],
+			[
+				"col-",
+				"col-sm-2"
+			],
+			[
+				"Local",
+				"Local_transport"
+			],
+			[
+				"tbl",
+				"table"
+			],
+			[
+				"fil",
+				"fields"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"Ho",
+				"homepage"
+			],
+			[
+				"banner",
+				"banner_image"
+			],
+			[
+				"pva",
+				"pval"
+			],
+			[
+				"p",
+				"pval1"
+			],
+			[
+				"Pho",
+				"PhoneNumber1"
+			],
+			[
+				"pa",
+				"pval1"
+			],
+			[
+				"form",
+				"form-control"
+			],
+			[
+				"val",
+				"value"
+			],
+			[
+				"Data",
+				"DatasValue"
+			],
+			[
+				"datas",
+				"datasValue"
+			],
+			[
+				"for",
+				"foreach\tforeach …"
+			],
+			[
+				"exp",
+				"explode"
+			],
+			[
+				"tr",
+				"trim"
+			],
+			[
+				"json_",
+				"json_encode"
+			],
+			[
+				"T",
+				"TotalKg"
+			],
+			[
+				"A",
+				"AmfplMark"
+			],
+			[
+				"cate",
+				"category_id"
+			],
+			[
+				"manu",
+				"manufacturer_name"
+			],
+			[
+				"ca",
+				"category"
+			],
+			[
+				"f",
+				"fields"
+			],
+			[
+				"G",
+				"Gallery"
+			],
+			[
+				"ne",
+				"nestedData"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"base",
+				"base64_encode"
+			],
+			[
+				"ch",
+				"check_exist_email"
+			],
+			[
+				"fi",
+				"final_data"
+			],
+			[
+				"print",
+				"print_r"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/D/xampp/htdocs/airoil4/src/AppBundle/Entity/Categorylist.php",
+			"settings":
+			{
+				"buffer_size": 3817,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/D/xampp/htdocs/airoil4/src/AppBundle/Entity/Manufacturer.php",
+			"settings":
+			{
+				"buffer_size": 9307,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<?php\n\nnamespace AppBundle\\Entity;\n\nuse Doctrine\\ORM\\Mapping as ORM;\nuse Gedmo\\Mapping\\Annotation as Gedmo;\nuse Symfony\\Component\\Validator\\Constraints as Assert;\nuse Symfony\\Component\\HttpFoundation\\File\\File;\nuse Vich\\UploaderBundle\\Mapping\\Annotation as Vich;\n\n/**\n * Manufacturer\n *\n * @ORM\\Table()\n * @ORM\\Entity\n * \n * @Vich\\Uploadable\n */\nclass Manufacturer\n{\n    /**\n     * @var int\n     *\n     * @ORM\\Column(name=\"id\", type=\"integer\")\n     * @ORM\\Id\n     * @ORM\\GeneratedValue(strategy=\"AUTO\")\n     */\n    private $id;\n\n    // *\n    //  * @var int\n    //  *\n    //  * @ORM\\Column(name=\"categorylist_id\", type=\"integer\", length=11)\n     \n    // private $categorylist_id;\n\n    /**\n     * @ORM\\ManyToOne(targetEntity=\"AppBundle\\Entity\\Categorylist\", inversedBy=\"manufacturer\")\n     *\n     * @var AppBundle\\Entity\\Categorylist;\n     */\n    protected $categorylist;\n\n    /**\n     * Set categorylist\n     *\n     * @param \\AppBundle\\Entity\\Categorylist $categorylist\n     * @return manufacturer\n     */\n    public function setCategorylist(\\AppBundle\\Entity\\Categorylist $categorylist = null)\n    {\n        $this->categorylist = $categorylist;\n\n        return $this;\n    }\n\n    /**\n     * Get categorylist\n     *\n     * @return \\AppBundle\\Entity\\Categorylist \n     */\n    public function getCategorylist()\n    {\n        return $this->categorylist;\n    }\n\n    /**\n     * @var string\n     *\n     * @ORM\\Column(name=\"small_logo_url\", type=\"string\", length=255)\n     */\n    private $small_logo_url;\n\n    /**\n     * @Vich\\UploadableField(mapping=\"manufacturer_small_image\", fileNameProperty=\"small_logo_url\")\n     * \n     * @var File $small_logo_urlFile\n     */\n    protected $small_logo_urlFile;\n\n    /**\n     * @param File|\\Symfony\\Component\\HttpFoundation\\File\\UploadedFile $image\n     */\n    public function setSmallLogoUrlFile(File $image = null)\n    {\n        $this->small_logo_urlFile = $image;\n\n        if ($image) {\n            // It is required that at least one field changes if you are using doctrine\n            // otherwise the event listeners won't be called and the file is lost\n            $this->updatedAt = new \\DateTime('now');\n        }\n    }\n    /**\n     * @return File\n     */\n    public function getSmallLogoUrlFile()\n    {\n        return $this->small_logo_urlFile;\n    }\n\n    /**\n     * @var string\n     *\n     * @ORM\\Column(name=\"logo_url\", type=\"string\", length=255)\n     */\n    private $logo_url;\n\n    /**\n     * @Vich\\UploadableField(mapping=\"manufacturer_image\", fileNameProperty=\"logo_url\")\n     * \n     * @var File $logo_urlFile\n     */\n    protected $logo_urlFile;\n\n    /**\n     * @param File|\\Symfony\\Component\\HttpFoundation\\File\\UploadedFile $image\n     */\n    public function setLogoUrlFile(File $image = null)\n    {\n        $this->logo_urlFile = $image;\n\n        if ($image) {\n            // It is required that at least one field changes if you are using doctrine\n            // otherwise the event listeners won't be called and the file is lost\n            $this->updatedAt = new \\DateTime('now');\n        }\n    }\n    /**\n     * @return File\n     */\n    public function getLogoUrlFile()\n    {\n        return $this->logo_urlFile;\n    }\n    \n    /**\n     * @var string\n     *\n     * @ORM\\Column(name=\"manufacturer_name\", type=\"string\", length=255)\n     */\n    private $manufacturer_name;\n\n////////////\n        /**\n     * @var ArrayCollection\n     * \n     * @ORM\\OneToMany(targetEntity=\"AppBundle\\Entity\\Product\", mappedBy=\"manufacturer_name\")\n     */\n    protected $product;\n\n    public function __construct()\n    {\n        // parent::__construct();\n\n        $this->product = new ArrayCollection();\n        // your own logic\n    }\n\n    public function __toString() {\n        return $this->manufacturer_name;\n    }\n    \n    /**\n     * Add product\n     *\n     * @param \\AppBundle\\Entity\\Product $product\n     * @return Manufacturer\n     */\n    public function addProduct(\\AppBundle\\Entity\\Product $product)\n    {\n        $this->product[] = $product;\n\n        return $this;\n    }\n\n     /**\n     * Remove product\n     *\n     * @param \\AppBundle\\Entity\\Product $product\n     */\n    public function removeProduct(\\AppBundle\\Entity\\Product $product)\n    {\n        $this->product->removeElement($product);\n    }\n\n    /**\n     * Get product\n     *\n     * @return \\Doctrine\\Common\\Collections\\Collection \n     */\n    public function getProduct()\n    {\n        return $this->product;\n    }\n///////////\n    /**\n     * @var string\n     *\n     * @ORM\\Column(name=\"short\", type=\"string\", length=255)\n     */\n    private $short;\n\n    /**\n     * @var string\n     *\n     * @ORM\\Column(name=\"description\", type=\"text\", length=255)\n     */\n    private $description;\n\n    /**\n     * @var string\n     *\n     * @ORM\\Column(name=\"store_url\", type=\"string\", length=255)\n     */\n    private $store_url;\n\n    /**\n     * @var string\n     *\n     * @ORM\\Column(name=\"link_url\", type=\"string\", length=255)\n     */\n    private $link_url;\n\n    /**\n     * @var \\DateTime\n     * \n     * @Gedmo\\Timestampable(on=\"update\")\n     *\n     * @ORM\\Column(name=\"updated_at\", type=\"datetime\")\n     */\n    private $updatedAt;\n    \n    /**\n     * @var \\DateTime\n     * \n     * @Gedmo\\Timestampable(on=\"create\")\n     *\n     * @ORM\\Column(name=\"created_at\", type=\"datetime\")\n     */\n    private $createdAt;\n\n\n    /**\n     * Get id\n     *\n     * @return integer \n     */\n    public function getId()\n    {\n        return $this->id;\n    }\n\n    /**\n     * Set categorylist_id\n     *\n     * @param integer $categorylistId\n     * @return Manufacturer\n     */\n    public function setCategorylistId($categorylistId)\n    {\n        $this->categorylist_id = $categorylistId;\n\n        return $this;\n    }\n\n    /**\n     * Get categorylist_id\n     *\n     * @return integer \n     */\n    public function getCategorylistId()\n    {\n        return $this->categorylist_id;\n    }\n\n    /**\n     * Set small_logo_url\n     *\n     * @param string $smallLogoUrl\n     * @return Manufacturer\n     */\n    public function setSmallLogoUrl($smallLogoUrl)\n    {\n        $this->small_logo_url = $smallLogoUrl;\n\n        return $this;\n    }\n\n    /**\n     * Get small_logo_url\n     *\n     * @return string \n     */\n    public function getSmallLogoUrl()\n    {\n        return $this->small_logo_url;\n    }\n\n    /**\n     * Set logo_url\n     *\n     * @param string $logoUrl\n     * @return Manufacturer\n     */\n    public function setLogoUrl($logoUrl)\n    {\n        $this->logo_url = $logoUrl;\n\n        return $this;\n    }\n\n    /**\n     * Get logo_url\n     *\n     * @return string \n     */\n    public function getLogoUrl()\n    {\n        return $this->logo_url;\n    }\n\n    /**\n     * Set manufacturer_name\n     *\n     * @param string $manufacturerName\n     * @return Manufacturer\n     */\n    public function setManufacturerName($manufacturerName)\n    {\n        $this->manufacturer_name = $manufacturerName;\n\n        return $this;\n    }\n\n    /**\n     * Get manufacturer_name\n     *\n     * @return string \n     */\n    public function getManufacturerName()\n    {\n        return $this->manufacturer_name;\n    }\n\n    /**\n     * Set short\n     *\n     * @param string $short\n     * @return Manufacturer\n     */\n    public function setShort($short)\n    {\n        $this->short = $short;\n\n        return $this;\n    }\n\n    /**\n     * Get short\n     *\n     * @return string \n     */\n    public function getShort()\n    {\n        return $this->short;\n    }\n\n    /**\n     * Set description\n     *\n     * @param string $description\n     * @return Manufacturer\n     */\n    public function setDescription($description)\n    {\n        $this->description = $description;\n\n        return $this;\n    }\n\n    /**\n     * Get description\n     *\n     * @return string \n     */\n    public function getDescription()\n    {\n        return $this->description;\n    }\n\n    /**\n     * Set store_url\n     *\n     * @param string $storeUrl\n     * @return Manufacturer\n     */\n    public function setStoreUrl($storeUrl)\n    {\n        $this->store_url = $storeUrl;\n\n        return $this;\n    }\n\n    /**\n     * Get store_url\n     *\n     * @return string \n     */\n    public function getStoreUrl()\n    {\n        return $this->store_url;\n    }\n\n    /**\n     * Set link_url\n     *\n     * @param string $linkUrl\n     * @return Manufacturer\n     */\n    public function setLinkUrl($linkUrl)\n    {\n        $this->link_url = $linkUrl;\n\n        return $this;\n    }\n\n    /**\n     * Get link_url\n     *\n     * @return string \n     */\n    public function getLinkUrl()\n    {\n        return $this->link_url;\n    }\n\n    /**\n     * Set created_at\n     *\n     * @param string $created_at\n     * @return Manufacturer\n     */\n    public function setCreatedAt($createdAt)\n    {\n        $this->created_at = $createdAt;\n\n        return $this;\n    }\n\n    /**\n     * Get created_at\n     *\n     * @return string \n     */\n    public function getCreatedAt()\n    {\n        return $this->createdAt;\n    }\n\n    /**\n     * Set updated_at\n     *\n     * @param \\DateTime $updatedAt\n     * @return Manufacturer\n     */\n    public function setUpdatedAt($updatedAt)\n    {\n        $this->updated_at = $updatedAt;\n\n        return $this;\n    }\n\n    /**\n     * Get updated_at\n     *\n     * @return \\DateTime \n     */\n    public function getUpdatedAt()\n    {\n        return $this->updatedAt;\n    }\n}\n",
+			"settings":
+			{
+				"buffer_size": 9258,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "php app/console doctrine:generate:entity --entity=AppBundle:Link --format=annotation --fields=\"name:string(255) description:string(255) url:string(255) created_at :datetime updated_at:datetime\" --no-interaction\n\n\n\n\n\n\n/// file\nphp app/console doctrine:generate:entity --entity=AppBundle:Files --format=annotation --fields=\"manufacturer_id:integer(11) product_id:integer(11) type:string(255) img_url:string(255) name:string(255) filename:string(255) filesize:string(255) created_at :datetime updated_at:datetime link_url:string(255) description:text banner_id:integer(11)\" --no-interaction\n\nINSERT INTO `file`(`id`, `manufacturer_id`, `product_id`, `type`, `img_url`, `name`, `filename`, `filesize`, `created_at`, `updated_at`, `link_url`, `description`, `banner_id`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12],[value-13])\n\n\n// product \nphp app/console doctrine:generate:entity --entity=AppBundle:Product --format=annotation --fields=\"manufacturer_id:integer(11) img_url:string(255) name:string(255) description:text created_at :datetime updated_at:datetime display_order:integer(11)\" --no-interaction\n\n\n\nINSERT INTO `product`(`id`, `manufacturer_id`, `img_url`, `name`, `description`, `created_at`, `updated_at`, `display_order`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8])",
+			"settings":
+			{
+				"buffer_size": 1405,
+				"line_ending": "Windows",
+				"name": "php app/console doctrine:generate:entity --entity="
+			}
+		},
+		{
+			"file": "/D/xampp/htdocs/airoil4/src/AppBundle/Entity/Product.php",
+			"settings":
+			{
+				"buffer_size": 5310,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<?php\n\nnamespace AppBundle\\Entity;\n\nuse Doctrine\\ORM\\Mapping as ORM;\nuse Gedmo\\Mapping\\Annotation as Gedmo;\nuse Symfony\\Component\\Validator\\Constraints as Assert;\nuse Symfony\\Component\\HttpFoundation\\File\\File;\nuse Vich\\UploaderBundle\\Mapping\\Annotation as Vich;\n\n/**\n * Product\n *\n * @ORM\\Table()\n * @ORM\\Entity\n * \n * @Vich\\Uploadable\n */\nclass Product\n{\n    /**\n     * @var int\n     *\n     * @ORM\\Column(name=\"id\", type=\"integer\")\n     * @ORM\\Id\n     * @ORM\\GeneratedValue(strategy=\"AUTO\")\n     */\n    private $id;\n\n    // *\n    //  * @var int\n    //  *\n    //  * @ORM\\Column(name=\"manufacturer_id\", type=\"integer\", length=11)\n     \n    // private $manufacturer_id;\n\n    /**\n     * @ORM\\ManyToOne(targetEntity=\"AppBundle\\Entity\\Manufacturer\", inversedBy=\"manufacturer\")\n     *\n     * @var AppBundle\\Entity\\Manufacturer;\n     */\n    protected $manufacturer;\n\n    /**\n     * Set Manufacturer\n     *\n     * @param \\AppBundle\\Entity\\Manufacturer $manufacturer\n     * @return product\n     */\n    public function setManufacturer(\\AppBundle\\Entity\\Manufacturer $manufacturer = null)\n    {\n        $this->manufacturer = $manufacturer;\n\n        return $this;\n    }\n\n    /**\n     * Get manufacturer\n     *\n     * @return \\AppBundle\\Entity\\Manufacturer \n     */\n    public function getManufacturer()\n    {\n        return $this->manufacturer;\n    }\n\n\n    /**\n     * @var string\n     *\n     * @ORM\\Column(name=\"img_url\", type=\"string\", length=255)\n     */\n    private $img_url;\n\n    /**\n     * @var string\n     *\n     * @ORM\\Column(name=\"name\", type=\"string\", length=255)\n     */\n    private $name;\n\n    /**\n     * @var string\n     *\n     * @ORM\\Column(name=\"description\", type=\"text\")\n     */\n    private $description;\n\n    /**\n     * @var \\DateTime\n     * \n     * @Gedmo\\Timestampable(on=\"update\")\n     *\n     * @ORM\\Column(name=\"updated_at\", type=\"datetime\")\n     */\n    private $updatedAt;\n    \n    /**\n     * @var \\DateTime\n     * \n     * @Gedmo\\Timestampable(on=\"create\")\n     *\n     * @ORM\\Column(name=\"created_at\", type=\"datetime\")\n     */\n    private $createdAt;\n\n    /**\n     * @var int\n     *\n     * @ORM\\Column(name=\"display_order\", type=\"integer\", length=11)\n     */\n    private $display_order;\n\n\n    /**\n     * Get id\n     *\n     * @return integer \n     */\n    public function getId()\n    {\n        return $this->id;\n    }\n\n    /**\n     * Set manufacturer_id\n     *\n     * @param integer $manufacturerId\n     * @return Product\n     */\n    public function setManufacturerId($manufacturerId)\n    {\n        $this->manufacturer_id = $manufacturerId;\n\n        return $this;\n    }\n\n    /**\n     * Get manufacturer_id\n     *\n     * @return integer \n     */\n    public function getManufacturerId()\n    {\n        return $this->manufacturer_id;\n    }\n\n    /**\n     * Set img_url\n     *\n     * @param string $imgUrl\n     * @return Product\n     */\n    public function setImgUrl($imgUrl)\n    {\n        $this->img_url = $imgUrl;\n\n        return $this;\n    }\n\n    /**\n     * Get img_url\n     *\n     * @return string \n     */\n    public function getImgUrl()\n    {\n        return $this->img_url;\n    }\n\n    /**\n     * Set name\n     *\n     * @param string $name\n     * @return Product\n     */\n    public function setName($name)\n    {\n        $this->name = $name;\n\n        return $this;\n    }\n\n    /**\n     * Get name\n     *\n     * @return string \n     */\n    public function getName()\n    {\n        return $this->name;\n    }\n\n    /**\n     * Set description\n     *\n     * @param string $description\n     * @return Product\n     */\n    public function setDescription($description)\n    {\n        $this->description = $description;\n\n        return $this;\n    }\n\n    /**\n     * Get description\n     *\n     * @return string \n     */\n    public function getDescription()\n    {\n        return $this->description;\n    }\n\n    /**\n     * Set created_at\n     *\n     * @param string $created_at\n     * @return Manufacturer\n     */\n    public function setCreatedAt($createdAt)\n    {\n        $this->created_at = $createdAt;\n\n        return $this;\n    }\n\n    /**\n     * Get created_at\n     *\n     * @return string \n     */\n    public function getCreatedAt()\n    {\n        return $this->createdAt;\n    }\n\n    /**\n     * Set updated_at\n     *\n     * @param \\DateTime $updatedAt\n     * @return Manufacturer\n     */\n    public function setUpdatedAt($updatedAt)\n    {\n        $this->updated_at = $updatedAt;\n\n        return $this;\n    }\n\n    /**\n     * Get updated_at\n     *\n     * @return \\DateTime \n     */\n    public function getUpdatedAt()\n    {\n        return $this->updatedAt;\n    }\n\n    /**\n     * Set display_order\n     *\n     * @param integer $displayOrder\n     * @return Product\n     */\n    public function setDisplayOrder($displayOrder)\n    {\n        $this->display_order = $displayOrder;\n\n        return $this;\n    }\n\n    /**\n     * Get display_order\n     *\n     * @return integer \n     */\n    public function getDisplayOrder()\n    {\n        return $this->display_order;\n    }\n}\n",
+			"settings":
+			{
+				"buffer_size": 4955,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/xampp/htdocs/airoil4/app/config/admin.yml",
+			"settings":
+			{
+				"buffer_size": 5009,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/D/xampp/htdocs/airoil4/app/config/config.yml",
+			"settings":
+			{
+				"buffer_size": 4302,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/xampp/htdocs/airoil4",
+		"/D/xampp/htdocs/airoil4/app",
+		"/D/xampp/htdocs/airoil4/app/config",
+		"/D/xampp/htdocs/airoil4/src",
+		"/D/xampp/htdocs/airoil4/src/AppBundle",
+		"/D/xampp/htdocs/airoil4/src/AppBundle/Entity"
+	],
+	"file_history":
+	[
+		"/D/xampp/htdocs/airoil4/src/AppBundle/Entity/Files.php",
+		"/D/xampp/htdocs/airoil4/web/css/style.css",
+		"/D/xampp/htdocs/airoil4/app/AppKernel.php",
+		"/D/xampp/htdocs/airoil4/app/Resources/views/product/product.html.twig",
+		"/D/xampp/htdocs/airoil4/app/Resources/views/product/search.html.twig",
+		"/D/xampp/htdocs/airoil4/app/Resources/views/product/index.html.twig",
+		"/D/xampp/htdocs/airoil4/src/AppBundle/Controller/ProductController.php",
+		"/D/xampp/htdocs/airoil4/src/AppBundle/Controller/CategoryController.php",
+		"/D/xampp/htdocs/airoil4/app/Resources/views/default/index.html.twig",
+		"/D/xampp/htdocs/airoil4/src/AppBundle/Controller/DefaultController.php",
+		"/D/xampp/htdocs/airoil4/app/Resources/views/base.html.twig",
+		"/D/xampp/htdocs/airoil4/app/Resources/views/categorylist/index.html.twig",
+		"/D/xampp/htdocs/airoil4/app/config/parameters.yml",
+		"/D/xampp/htdocs/airoil4/app/config/routing.yml",
+		"/D/xampp/htdocs/airoil4/composer.json",
+		"/D/xampp/htdocs/airoil4/vendor/javiereguiluz/easyadmin-bundle/src/Resources/views/default/menu.html.twig",
+		"/D/xampp/htdocs/android/ClubMobile/ClubMobile-Web/vis_mobile/admin/layouts/default/payment_logs.html",
+		"/D/xampp/htdocs/android/ClubMobile/ClubMobile-Web/vis_mobile/admin/customer_list.php",
+		"/D/xampp/htdocs/android/ClubMobile/ClubMobile-Web/vis_mobile/admin/layouts/default/dashboard - 29-04-16.html",
+		"/D/xampp/htdocs/android/ClubMobile/ClubMobile-Web/vis_mobile/admin/scripts/customer_webservice.php",
+		"/D/xampp/htdocs/chilly/layouts/default/form/tariffs_form.html",
+		"/D/xampp/htdocs/chilly/tariffs_data.php",
+		"/D/xampp/htdocs/chilly/layouts/default/Tariffs.html",
+		"/D/xampp/htdocs/chilly/includes/tables.php",
+		"/D/xampp/htdocs/chilly/Tariffs.php",
+		"/D/xampp/htdocs/chilly/layouts/default/common/left_dashboard.html",
+		"/D/xampp/htdocs/chilly/Purchase_details.php",
+		"/D/xampp/htdocs/chilly/Gallery.php",
+		"/D/xampp/htdocs/aravind/AndroidApp/scripts/webservice.php",
+		"/F/xampp/htdocs/go_orga/organic_1/action.php",
+		"/D/xampp/htdocs/android/ClubMobile/ClubMobile-Web/vis_mobile/admin/scripts/artist_webservice.php",
+		"/D/xampp/htdocs/aravind/AndroidApp/includes/tables.php",
+		"/D/xampp/htdocs/airoil1-old(06-12-2017)/src/AppBundle/Entity/Manufacturer.php",
+		"/D/xampp/htdocs/airoil1-old(06-12-2017)/src/AppBundle/Entity/User.php",
+		"/D/xampp/htdocs/airoil1-old(06-12-2017)/src/AppBundle/Entity/Customer.php",
+		"/D/xampp/htdocs/airoil1-old(06-12-2017)/src/AppBundle/Entity/Customer.php~",
+		"/D/xampp/htdocs/airoil1-old(06-12-2017)/src/AppBundle/Entity/Category.php",
+		"/D/xampp/htdocs/airoil4/src/AppBundle/Entity/Banner.php",
+		"/D/xampp/htdocs/airoil1-old(06-12-2017)/app/config/admin.yml",
+		"/D/xampp/htdocs/airoil1-old(06-12-2017)/app/config/config.yml",
+		"/D/xampp/htdocs/airoil4/app/config/admin.yml",
+		"/D/xampp/htdocs/airoil4/app/config/config.yml",
+		"/D/xampp/htdocs/airoil4/src/AppBundle/Entity/Manufacturer.php",
+		"/D/xampp/htdocs/airoil4/src/AppBundle/Entity/Categorylist.php",
+		"/D/xampp/htdocs/airoil4/src/AppBundle/Entity/Page.php",
+		"/D/xampp/htdocs/airoil4/src/AppBundle/Controller/PageController.php",
+		"/D/xampp/htdocs/airoil4/src/AppBundle/Menu/MenuBuilder.php",
+		"/D/xampp/htdocs/airoil4/src/AppBundle/Controller/ContentController.php",
+		"/D/xampp/htdocs/airoil4/src/AppBundle/DataFixtures/PHPCR/LoadPageData.php",
+		"/D/xampp/htdocs/airoil4/src/AppBundle/Entity/Pages.php",
+		"/D/xampp/htdocs/airoil4/app/config/services.yml",
+		"/D/xampp/htdocs/airoil4/app/config/security.yml",
+		"/D/xampp/htdocs/airoil1-old(06-12-2017)/src/AppBundle/Entity/Meta_info.php",
+		"/D/xampp/htdocs/airoil1-old(06-12-2017)/app/Resources/views/default/index.html.twig",
+		"/D/xampp/htdocs/airoil1-old(06-12-2017)/app/Resources/views/base.html.twig",
+		"/D/xampp/htdocs/airoil1-old(06-12-2017)/src/AppBundle/Controller/CategoryController.php",
+		"/D/xampp/htdocs/airoil1-old(06-12-2017)/app/Resources/views/category/index.html.twig",
+		"/D/xampp/htdocs/airoil1-old(06-12-2017)/src/AppBundle/Entity/Banner.php",
+		"/D/xampp/htdocs/airoil1-old(06-12-2017)/src/AppBundle/Controller/DefaultController.php",
+		"/D/xampp/htdocs/android/ClubMobile/ClubMobile-Web/vis_mobile/admin/includes/db.php",
+		"/D/xampp/htdocs/android/ClubMobile/ClubMobile-Web/vis_mobile/admin/includes/tables.php",
+		"/D/xampp/htdocs/airoil4/src/AppBundle/Entity/Category.php",
+		"/D/xampp/htdocs/airoil4/src/AppBundle/Entity/categorylist.php",
+		"/D/xampp/htdocs/chilly/staff_list.php",
+		"/D/xampp/htdocs/chilly/js/function_common.js",
+		"/D/xampp/htdocs/chilly/layouts/default/form/customer_form.html",
+		"/D/xampp/htdocs/chilly/classes/Tariffs.class.php",
+		"/D/xampp/htdocs/chilly/classes/Staff.class.php",
+		"/D/xampp/htdocs/airoil1-old(06-12-2017)/src/AppBundle/Entity/Link.php",
+		"/D/xampp/htdocs/airoil1-old(06-12-2017)/composer.json",
+		"/D/xampp/htdocs/chilly/Local_transport.php",
+		"/D/xampp/htdocs/chilly/Customer.php",
+		"/D/xampp/htdocs/chilly/layouts/default/Godown.html",
+		"/D/xampp/htdocs/chilly/layouts/default/Agency.html",
+		"/D/xampp/htdocs/chilly/layouts/default/form/agency_form.html",
+		"/D/xampp/htdocs/chilly/classes/Godown.class.php",
+		"/D/xampp/htdocs/chilly/godown_list.php",
+		"/D/xampp/htdocs/chilly/Godown.php",
+		"/D/xampp/htdocs/chilly/layouts/default/form/godown_form.html",
+		"/D/xampp/htdocs/chilly/layouts/default/Local_transport.html",
+		"/D/xampp/htdocs/chilly/local_transport_list.php",
+		"/D/xampp/htdocs/chilly/classes/Local_transport.class.php",
+		"/D/xampp/htdocs/chilly/layouts/default/form/local_transport_form.html",
+		"/D/xampp/htdocs/chilly/layouts/default/Customer.html",
+		"/D/xampp/htdocs/chilly/customer_list.php",
+		"/D/xampp/htdocs/chilly/classes/Customer.class.php",
+		"/D/xampp/htdocs/littlezebra/layouts/default/common/left_dashboard.html",
+		"/D/xampp/htdocs/littlezebra/layouts/default/form/activity_form.html",
+		"/D/xampp/htdocs/littlezebra/layouts/default/Activity.html",
+		"/D/xampp/htdocs/airoil4/src/AppBundle/Menu/Builder.php",
+		"/D/xampp/htdocs/littlezebra/layouts/default/Prayersong.html",
+		"/D/xampp/htdocs/littlezebra/layouts/default/form/prayer_song_form.html",
+		"/D/xampp/htdocs/littlezebra/layouts/default/common/header.html",
+		"/D/xampp/htdocs/littlezebra/js/ckeditor/config.js",
+		"/D/xampp/htdocs/littlezebra/layouts/default/common/footer.html",
+		"/D/xampp/htdocs/chilly/agency_list.php",
+		"/D/xampp/htdocs/littlezebra/layouts/default/Gallery.html",
+		"/D/xampp/htdocs/littlezebra/layouts/default/Actionsong.html",
+		"/D/xampp/htdocs/littlezebra/week_list.php",
+		"/D/xampp/htdocs/littlezebra/action_song_list.php",
+		"/D/xampp/htdocs/abc/cache/backend/prod/config/config_core_compile.yml.php",
+		"/D/xampp/htdocs/airoil4/src/AppBundle/Repository/PageRepository.php",
+		"/D/xampp/htdocs/airoil4/src/AppBundle/Repository/PagesRepository.php",
+		"/D/xampp/htdocs/littlezebra/Action_song.php",
+		"/D/xampp/htdocs/airoil1-old(06-12-2017)/airoil1(5-12-2017).zip",
+		"/D/xampp/htdocs/chilly/Agency.php",
+		"/D/xampp/htdocs/chilly/layouts/default/Staff.html",
+		"/D/xampp/htdocs/chilly/Staff.php",
+		"/D/xampp/htdocs/chilly/layouts/default/form/staff_form.html",
+		"/D/xampp/htdocs/chilly/classes/Agency.class.php",
+		"/D/xampp/htdocs/littlezebra/classes/application.class.php",
+		"/D/xampp/htdocs/littlezebra/layouts/default/form/student_form.html",
+		"/D/xampp/htdocs/littlezebra/classes/validator.class.php",
+		"/D/xampp/htdocs/littlezebra/layouts/default/form/login.html",
+		"/D/xampp/htdocs/littlezebra/layouts/default/form/weekevent_form.html",
+		"/D/xampp/htdocs/chilly/Bank_details.php",
+		"/D/xampp/htdocs/littlezebra/change_status.php",
+		"/D/xampp/htdocs/chilly/change_status.php",
+		"/D/xampp/htdocs/chilly/order_list.php",
+		"/D/xampp/htdocs/chilly/gallery_list.php",
+		"/D/xampp/htdocs/chilly/layouts/default/form/gallery_form.html",
+		"/D/xampp/htdocs/airoil2/www/airoil.com/symfony/config/propel.ini",
+		"/D/xampp/htdocs/airoil2/www/airoil.com/symfony/config/properties.ini",
+		"/D/xampp/htdocs/airoil2/www/airoil.com/symfony/config/databases.yml",
+		"/D/xampp/htdocs/airoil2/www/airoil.com/symfony/config/schema.yml",
+		"/D/xampp/htdocs/airoil2/www/airoil.com/symfony/composer.json",
+		"/F/xampp/htdocs/symfon- server/composer.json",
+		"/D/xampp/htdocs/chilly/layouts/default/form/bank_details_form.html"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			" {{"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/D/xampp/htdocs/airoil4/src/AppBundle/Entity/Categorylist.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3817,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								156,
+								107
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/D/xampp/htdocs/airoil4/src/AppBundle/Entity/Manufacturer.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9307,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1592,
+								1616
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1260.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9258,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9258,
+								9258
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 9050.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1405,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1190,
+								1190
+							]
+						],
+						"settings":
+						{
+							"auto_name": "php app/console doctrine:generate:entity --entity=",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 240.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/D/xampp/htdocs/airoil4/src/AppBundle/Entity/Product.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5310,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1253,
+								1253
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1130.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4955,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4955,
+								4955
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4970.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/D/xampp/htdocs/airoil4/app/config/admin.yml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5009,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4891,
+								4891
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/YAML/YAML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/D/xampp/htdocs/airoil4/app/config/config.yml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4302,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4077,
+								4077
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/YAML/YAML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1980.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 40.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "airoil.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 285.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

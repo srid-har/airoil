@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<div class="center_content">
+  <h2> Manufacturer: {{ manufacturer.manufacturerName }}</h2>
+  <p><hr></p>
+  <div class="row">
+      <div class="col-sm-12">
+        <div style="text-align:center">
+          <a href="">
+            <img src="{{ asset('images/manufacturers/small/'~manufacturer.SmallLogoUrl) }}" width="200" height="76" class="imgresp" />
+          </a>
+        </div> 
+        {{ manufacturer.description | raw }}
+      </div> 
+      <div class="col-sm-12" style="text-align:center">
+        {% if manufacturer.LinkUrl != "" %}
+          <a href="../Manufacturervisit/{{ manufacturer.Id }}">Visit Site</a>    | 
+        {% endif %} 
+        {% if manufacturer.StoreUrl != "" %} 
+          <a href="../v6/{{ manufacturer.StoreUrl }}">Order Online</a>
+        {% endif %} 
+      </div>   
+  </div>
+  {% if product|length != 0 %}
+  <h2 style="color: #000;border-bottom: 1px solid #999;">Products</h2>
+    <div  class="row">
+      {% for key1 in product %}
+        <div class="col-md-4 ">
+          <div class=" well heightcol">
+            <a href="../Product/{{ key1.id }}">
+              <img src="{{ asset('images/product/'~key1.ImgUrl) }}" width="" height=""  class="imgresp" />
+            </a> 
+            <p class="text-center"> 
+              <a href="../Product/{{ key1.id }}">{{ key1.name }}</a>
+            </p>
+          </div> 
+        </div>    
+      {% endfor %}
+    </div>
+  {% endif %}
+  {% if CadProduct|length != 0 %} 
+    <h3 style="color: #039;border-bottom: 1px solid #EEE;">CAD Files</h3>
+    <div class="row">
+      {% for key1 in CadProduct %}
+        <div class="col-sm-12 ">
+          <div >
+            <a href="Product/product/{{ key1.id }}">
+              <img src="{{ asset('images/literature/image/'~key1.ImgUrl) }}"  class="imgresp" />
+            </a>
+          </div> 
+        <div class="" style=""> {{ key1.name }}</div>
+        <div class="belongs_to">Manufacturer:
+        <a href="Manufacturer/{{ manufacturer.Id }}">{{ manufacturer.manufacturerName }}</a></div>
+        <div class="belongs_to">CAD Files</div>
+        <p><a href="{{ asset('images/literature/file/'~key1.Filename) }}" target="_blank">[ Download ]</a></p>
+        </div>           
+      {% endfor %} 
+    </div>
+  {% endif %}
+  {% if FileProduct|length != 0 %}
+    <br>
+    <h3 style="color: #039;border-bottom: 1px solid #EEE;">Files</h3>
+    <div class="row">
+      {% for key1 in FileProduct %}
+        <div class="col-sm-12 ">
+          <div >
+            <a href="Product/product/{{ key1.id }}">
+              <img src="{{ asset('images/literature/image/'~key1.ImgUrl) }}"  class="imgresp" />
+            </a>
+          </div> 
+        <div class="" style=""> {{ key1.name }}</div>
+        <div class="belongs_to">Manufacturer:
+        <a href="Manufacturer/{{ manufacturer.Id }}">{{ manufacturer.manufacturerName }}</a></div>
+        <div class="belongs_to">Files</div>
+        <p><a href="../Productvisit/{{ key1.id }}" target="_blank">[ Link ]</a></p>
+        </div>           
+      {% endfor %} 
+    </div>
+  {% endif %}
+  {% if LiteratureProduct|length != 0 %}
+    <br>
+    <h3 style="color: #039;border-bottom: 1px solid #EEE;">Literature</h3>
+    <div class="row">
+      {% for key1 in LiteratureProduct %}
+        <div class="col-sm-12 ">
+          <div >
+            <a href="Product/product/{{ key1.id }}">
+              <img src="{{ asset('images/literature/image/'~key1.ImgUrl) }}"  class="imgresp" />
+            </a>
+          </div> 
+        <div class="" style=""> {{ key1.name }}</div>
+        <div class="belongs_to">Manufacturer:
+        <a href="Manufacturer/{{ manufacturer.Id }}">{{ manufacturer.manufacturerName }}</a></div>
+        <div class="belongs_to">Literature</div>
+        <p><a href="{{ asset('images/literature/file/'~key1.Filename) }}" target="_blank">[ Download ]</a></p>
+        </div>           
+      {% endfor %} 
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="center_content">
+  <h2>Searchable CAD Files & Software List</h2>
+  <p><hr></p>
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="container"  style="border: 1px solid #ccc;padding: 10px;">
+        <h2>Search </h2> 
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+      </div>
+    </div>
+  </div>
+  <div class="row"><div class="col-sm-12" style="font-style: italic;color: #666;" >{{ literature|length }} results</div></div>
+  <div class="row" id="easyPaginate">
+    <div class="col-sm-10">
+      {% set inum = 0 %}
+      <div class="row" style="padding-left: 5%;">
+      {% for key1 in literature %}
+        {% set inum = inum + 1 %}
+        
+          <div class="col-sm-12 divpagination border-bottom-0" style="margin: 5px 2px 0 0;border:1px solid #b8b8c3">
+            <div class="col-sm-3" style="text-align:center">
+              <a href="">
+                <img src="{{ asset('images/literature/image/'~key1.ImgUrl) }}" alt="{{ key1.name }}" width="" height="" class="imgresp" style="margin-top: 10%;" />
+              </a>
+            </div> 
+            <div class="col-sm-9" style="border-left: 1px solid #b8b8c3;">
+              <p> 
+                <b>{{ key1.name }}</b>
+              </p>
+              <p > 
+                <b>Manufacturer</b> :{{ key1.name }}
+              </p>
+              <p > 
+                <b>Product</b> :{{ key1.name }}
+              </p>
+              <p > 
+                <b>Literature</b> <br>
+              {{ key1.description | raw }}
+              </p>
+              <p>
+                {% if key1.type == "file" and key1.LinkUrl != "" %}
+                  <a href="{{ key1.LinkUrl }}">[ Link ]</a>
+                {% else %}
+                  <a href="{{ asset('images/literature/file/'~key1.Filename) }}" target="_blank">[ Download ]</a>
+                {% endif %}
+              </p>
+            </div>
+          </div>    
+              
+      {% endfor %} 
+      </div>
+      {% if inum == 0 %}
+        <div class="row">
+          <div class="col-sm-3 well boxsizediv">
+              <div style="text-align:center">
+                No Records 
+              </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
