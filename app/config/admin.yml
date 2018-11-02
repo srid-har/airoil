@@ -1,0 +1,175 @@
+easy_admin:
+    entities:
+        User:
+            class: AppBundle\Entity\User
+            list:
+                fields: ['id', 'username', 'email', 'enabled', 'locked','lastLogin']
+            edit:
+                fields: ['username', 'email', 'enabled', 'locked']
+            new:
+                fields: 
+                    - { property: 'username' }
+                    - { property: 'email', type: 'email', label: 'E-mail address' }
+                    - { property: 'plainPassword', type: 'password' }
+                    - { property: 'enabled'}
+                    # - { property: 'locked'}
+                    # - { property: 'salt'}
+        Customer:
+            class: AppBundle\Entity\Customer
+            new:
+                fields: ['user', 'name', 'firstName', 'lastName', 'email', 'phone', 'companyName', 'website']
+        Pages:
+            label: "Cms Pages"
+            class: Orbitale\Bundle\CmsBundle\Entity\Page
+            show:
+                fields: [ id, parent, title, slug, tree, content, metaDescription, metaTitle, metaKeywords, css, js, category, host, locale, homepage, enabled ]
+            list:
+                fields: [ id, parent, title, slug, tree, content, category, homepage, host, locale, enabled ]
+            form:
+                fields: 
+                    - title
+                    - slug
+                    - { property: 'content', type: 'ckeditor' }
+                    - metaDescription
+                    - metaTitle
+                    - metaKeywords
+                    - css
+                    - js
+                    - category
+                    - parent
+                    # - host
+                    - locale
+                    - homepage
+                    - enabled
+        Categories:
+            label: "Cms Categories"
+            class: Orbitale\Bundle\CmsBundle\Entity\Category
+            list:
+                fields: [ id, name, slug, description, parent, enabled ]
+            form:
+                fields: 
+                    - name
+                    - slug
+                    - { property: 'description', type: 'ckeditor' }
+                    - parent
+                    - enabled 
+        Banner:
+            label: "Banner"
+            class: AppBundle\Entity\Banner
+            list:
+                fields:
+                    - text
+                    - { property: 'img_url', type: 'image', base_path: '%app.path.banner_image%' }
+                    - display_order
+            show:
+                fields:
+                    - text
+                    - { property: 'img_url', type: 'image', base_path: '%app.path.banner_image%' }
+                    - display_order
+            form:
+                fields:
+                    - text
+                    - { property: 'img_urlFile', type: 'file' }
+                    - display_order
+        Categorylist:
+            lable: "Category"
+            class: AppBundle\Entity\Categorylist
+            list:
+                fields:
+                    - categorylist
+                    - status
+            show:
+                fields:
+                    - categorylist
+                    - status
+            form:
+                fields:
+                    - categorylist
+                    - status
+        Manufacturer:
+            label: "Manufacturer"
+            class: AppBundle\Entity\Manufacturer
+            list:
+                fields:
+                    - categorylist
+                    - manufacturer_name
+                    - { property: 'small_logo_url', type: 'image', base_path: '%app.path.manufacturer_image%' }
+                    - { property: 'logo_url', type: 'image', base_path: '%app.path.manufacturer_small_image%' }
+                    - short
+                    - description
+                    - store_url
+                    - link_url
+            show:
+                fields:
+                    - categorylist
+                    - manufacturer_name
+                    - { property: 'small_logo_url', type: 'image', base_path: '%app.path.manufacturer_image%' }
+                    - { property: 'logo_url', type: 'image', base_path: '%app.path.manufacturer_small_image%' }
+                    - short
+                    - description
+                    - store_url
+                    - link_url
+            form:
+                fields:
+                    - categorylist
+                    - manufacturer_name
+                    - { property: 'small_logo_urlFile', type: 'file' }
+                    - { property: 'logo_urlFile', type: 'file' }
+                    - short
+                    - { property: 'description', type: 'ckeditor' }
+                    - store_url
+                    - link_url
+        Product:
+            label: "Product"
+            class: AppBundle\Entity\Product
+            list:
+                fields:
+                    - manufacturer
+                    - name
+                    - { property: 'img_url', type: 'image', base_path: '%app.path.product_image%' }
+                    - description
+                    - display_order
+            show:
+                fields:
+                    - manufacturer
+                    - name
+                    - { property: 'img_url', type: 'image', base_path: '%app.path.product_image%' }
+                    - description
+                    - display_order
+            form:
+                fields:
+                    - manufacturer
+                    - name
+                    - { property: 'img_urlFile', type: 'file' }
+                    - { property: 'description', type: 'ckeditor' }
+                    - display_order
+        Literature:
+            label: "Literature"
+            class: AppBundle\Entity\Literature
+            list:
+                fields:
+                    - manufacturer
+                    - product
+                    - type
+                    - { property: 'img_url', type: 'image', base_path: '%app.path.literature_image%' }
+                    - name
+                    - { property: 'filename', type: 'file', base_path: '%app.path.literature_file%' }
+            show:
+                fields:
+                    - manufacturer
+                    - product
+                    - type
+                    - { property: 'img_url', type: 'image', base_path: '%app.path.literature_image%' }
+                    - name
+                    - { property: 'filename', type: 'file', base_path: '%app.path.literature_file%' }
+            form:
+                fields:
+                    - manufacturer
+                    - product
+                    - type
+                    - { property: 'img_urlFile', type: 'file' }
+                    - name
+                    - { property: 'filenameFile', type: 'file' }
+                    - link_url
+                    - { property: 'description', type: 'ckeditor' }
+

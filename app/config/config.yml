@@ -1,0 +1,140 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+    - { resource: admin.yml }
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: en
+    app.path.banner_image: /images/banners
+    app.path.manufacturer_image: /images/manufacturers
+    app.path.manufacturer_small_image: /images/manufacturers/small
+    app.path.product_image: /images/product
+    app.path.literature_image: /images/literature/image
+    app.path.literature_file: /images/literature/file
+framework:
+    #esi: ~
+    translator: ~
+    secret: '%secret%'
+    router:
+        resource: '%kernel.root_dir%/config/routing.yml'
+        strict_requirements: ~
+    form: ~
+    csrf_protection: ~
+    validation: { enable_annotations: true }
+    #serializer: { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale: '%locale%'
+    trusted_hosts: ~
+    trusted_proxies: ~
+    session:
+        # handler_id set to null will use default session handler from php.ini
+        handler_id: ~
+    fragments: ~
+    http_method_override: true
+
+# Twig Configuration
+twig:
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver: pdo_mysql
+        host: '%database_host%'
+        port: '%database_port%'
+        dbname: '%database_name%'
+        user: '%database_user%'
+        password: '%database_password%'
+        charset: UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: '%kernel.root_dir%/data/data.db3'
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #path: '%database_path%'
+
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: '%mailer_transport%'
+    host: '%mailer_host%'
+    username: '%mailer_user%'
+    password: '%mailer_password%'
+    spool: { type: memory }
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+
+# orbitale_cms:
+    # page_class: AppBundle\Entity\Page
+    # category_class: AppBundle\Entity\Category
+
+# orbitale_cms:
+#     layouts:
+#         front: { resource: @App/layout.html.twig } # The Twig path to your layout
+
+orbitale_cms:
+    # layouts:
+        # front: { resource: @App/layout.html.twig } # The Twig path to your layout
+    connection: default    # Optional, used for Gedmo doctrine extensions.
+    
+    design:
+        breadcrumbs_class:           "breadcrumb"  # The default value automatically suits to Bootstrap
+        breadcrumbs_link_class:      ""
+        breadcrumbs_current_class:   ""
+        breadcrumbs_separator:       ">"
+        breadcrumbs_separator_class: "breadcrumb-separator"
+    cache:
+        enabled: false
+        ttl: 300
+
+knp_menu:
+    # use "twig: false" to disable the Twig extension and the TwigRenderer
+    twig:
+        template: KnpMenuBundle::menu.html.twig
+    #  if true, enables the helper for PHP templates
+    templating: false
+    # the renderer to use, list is also available by default
+    default_renderer: twig
+    
+vich_uploader:
+    db_driver: orm # or mongodb or propel or phpcr
+    mappings:
+        banner_image:
+            uri_prefix:         /images/banners
+            upload_destination: %kernel.root_dir%/../web/images/banners
+        manufacturer_image:
+            uri_prefix:         /images/manufacturers
+            upload_destination: %kernel.root_dir%/../web/images/manufacturers
+        manufacturer_small_image:
+            uri_prefix:         /images/manufacturers/small
+            upload_destination: %kernel.root_dir%/../web/images/manufacturers/small
+        product_image: 
+            uri_prefix:         /images/product
+            upload_destination: %kernel.root_dir%/../web/images/product
+        literature_image: 
+            uri_prefix:         /images/literature/image
+            upload_destination: %kernel.root_dir%/../web/images/literature/image
+        literature_file: 
+            uri_prefix:         /images/literature/file
+            upload_destination: %kernel.root_dir%/../web/images/literature/file
+
+# cmf_routing:
+#     chain:
+#         routers_by_id:
+#             router.default: 200
+#             cmf_routing.dynamic_router: 100
+#     dynamic:
+#         persistence:
+#             phpcr:
+#                 enabled: true
